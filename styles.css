@@ -450,6 +450,31 @@ section h2 {
   border-bottom: 1px solid var(--line);
 }
 
+.audience {
+  background:
+    linear-gradient(rgba(239, 52, 124, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 52, 124, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, #fff 0%, #fff8fb 100%);
+  background-size: 2.2rem 2.2rem, 2.2rem 2.2rem, auto;
+  border-bottom: 1px solid var(--line);
+}
+
+.audience .container {
+  position: relative;
+}
+
+.audience .container::before {
+  position: absolute;
+  top: -1.4rem;
+  right: clamp(0rem, 4vw, 3rem);
+  width: clamp(5rem, 10vw, 8rem);
+  height: clamp(5rem, 10vw, 8rem);
+  content: "";
+  background: rgba(239, 52, 124, 0.12);
+  border-radius: 50%;
+  filter: blur(0.2px);
+}
+
 .hook::before,
 .difference::before {
   position: absolute;
