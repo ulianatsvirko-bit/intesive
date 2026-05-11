@@ -430,16 +430,36 @@ section h2 {
 }
 
 .hook {
-  border-bottom: 1px solid var(--line);
+  overflow: hidden;
 }
 
 .audience {
+  position: relative;
+  margin-top: -1px;
   background:
     linear-gradient(rgba(239, 52, 124, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(239, 52, 124, 0.045) 1px, transparent 1px),
     linear-gradient(180deg, #fff 0%, #fff8fb 100%);
   background-size: 2.2rem 2.2rem, 2.2rem 2.2rem, auto;
   border-bottom: 1px solid var(--line);
+}
+
+.audience::before {
+  position: absolute;
+  top: -1.65rem;
+  right: 0;
+  left: 0;
+  height: 3.4rem;
+  content: "";
+  background:
+    radial-gradient(1.4rem 1.1rem at 8% 55%, rgba(239, 52, 124, 0.2) 0 62%, transparent 64%),
+    radial-gradient(1.8rem 1.25rem at 27% 42%, rgba(239, 52, 124, 0.13) 0 62%, transparent 64%),
+    radial-gradient(1.35rem 1rem at 49% 58%, rgba(239, 52, 124, 0.18) 0 62%, transparent 64%),
+    radial-gradient(1.7rem 1.15rem at 72% 44%, rgba(239, 52, 124, 0.12) 0 62%, transparent 64%),
+    radial-gradient(1.25rem 1rem at 92% 58%, rgba(239, 52, 124, 0.18) 0 62%, transparent 64%),
+    linear-gradient(90deg, rgba(239, 52, 124, 0.16), rgba(255, 210, 229, 0.7), rgba(239, 52, 124, 0.12));
+  clip-path: polygon(0 36%, 9% 56%, 20% 42%, 32% 58%, 45% 39%, 58% 55%, 72% 41%, 86% 57%, 100% 38%, 100% 100%, 0 100%);
+  pointer-events: none;
 }
 
 .audience .container {
