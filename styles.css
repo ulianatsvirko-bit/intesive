@@ -88,28 +88,11 @@ a {
   font-weight: 900;
 }
 
-.brand-mark {
-  position: relative;
-  display: inline-grid;
-  min-width: 5.5rem;
-  min-height: 2.45rem;
-  place-items: center;
-  color: var(--ink);
-  font-family: "Unbounded", sans-serif;
-  font-size: 0.74rem;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  transform: rotate(-4deg);
-}
-
-.brand-mark::before {
-  position: absolute;
-  inset: 0.35rem 0.2rem;
-  z-index: -1;
-  content: "";
-  background: var(--pink);
-  border-radius: 42% 55% 38% 52% / 56% 42% 58% 48%;
-  transform: skewX(-10deg) rotate(-2deg);
+.brand-logo {
+  width: clamp(5.8rem, 10vw, 8.2rem);
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: multiply;
 }
 
 .main-nav {
