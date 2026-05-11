@@ -708,6 +708,10 @@ section h2 {
   background: linear-gradient(180deg, transparent 54%, rgba(8, 8, 8, 0.18));
 }
 
+.teacher-photo-buyalskaya img {
+  object-position: 50% 40%;
+}
+
 .photo-01 {
   --photo: linear-gradient(135deg, #ffd9e7, #ef347c);
 }
