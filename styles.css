@@ -712,6 +712,10 @@ section h2 {
   object-position: 50% 40%;
 }
 
+.teacher-photo-artamonov img {
+  object-position: 55% 38%;
+}
+
 .photo-01 {
   --photo: linear-gradient(135deg, #ffd9e7, #ef347c);
 }
