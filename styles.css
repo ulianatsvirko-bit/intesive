@@ -1376,8 +1376,11 @@ section h2 {
 @media (max-width: 767px) {
   .site-header {
     position: fixed;
+    top: 0;
     right: 0;
     left: 0;
+    width: 100%;
+    margin: 0;
     justify-content: flex-end;
     background: transparent;
     border-bottom-color: transparent;
@@ -1405,6 +1408,10 @@ section h2 {
   .site-header.is-scrolled .brand,
   .site-header.is-menu-open .brand {
     display: inline-flex;
+  }
+
+  .main-nav {
+    top: 100%;
   }
 
   .hero {
