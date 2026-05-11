@@ -78,6 +78,10 @@ a {
   color: var(--ink);
   background: var(--paper);
   border-bottom: 1px solid var(--line);
+  transition:
+    background 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
 }
 
 .brand {
@@ -359,6 +363,21 @@ section h2 {
   border-color: var(--line-strong);
 }
 
+.final-cta .button-ghost {
+  color: var(--paper);
+  background: rgba(8, 8, 8, 0.18);
+  border-color: var(--paper);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.55),
+    0 1rem 2.2rem rgba(8, 8, 8, 0.12);
+}
+
+.final-cta .button-ghost:hover {
+  color: var(--ink);
+  background: var(--paper);
+  border-color: var(--paper);
+}
+
 .hero-panel {
   position: relative;
   grid-area: panel;
@@ -366,11 +385,123 @@ section h2 {
   display: grid;
   align-self: end;
   color: var(--ink);
+  gap: 0.8rem;
+}
+
+.hero-photo-stack {
+  position: relative;
+  min-height: clamp(18rem, 60vw, 30rem);
+  isolation: isolate;
+}
+
+.hero-photo-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  overflow: hidden;
+  width: var(--card-width);
+  margin: 0;
+  aspect-ratio: var(--card-ratio, 0.82);
   background: var(--paper);
+  border: 0.45rem solid var(--paper);
+  border-radius: 1.05rem;
+  box-shadow: 0 1.8rem 4rem rgba(8, 8, 8, 0.18);
+  transform-origin: center;
+  transform: translate(-50%, -50%) translate3d(var(--card-x), var(--card-y), 0) rotate(var(--card-rotate))
+    scale(var(--card-scale));
+  transition:
+    width 780ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 780ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 500ms ease,
+    box-shadow 780ms ease;
+}
+
+.hero-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: heroPhotoBreath 6s ease-in-out infinite;
+}
+
+.hero-photo-card.is-front {
+  z-index: 3;
+  --card-width: min(72%, 24rem);
+  --card-x: 16%;
+  --card-y: 11%;
+  --card-rotate: 5deg;
+  --card-scale: 1;
+  opacity: 1;
+  box-shadow: 0 2.1rem 4.5rem rgba(8, 8, 8, 0.22);
+}
+
+.hero-photo-floor img {
+  object-position: 50% 52%;
+}
+
+.hero-photo-card.is-left {
+  z-index: 2;
+  --card-width: min(54%, 18rem);
+  --card-x: -38%;
+  --card-y: -23%;
+  --card-rotate: -9deg;
+  --card-scale: 0.96;
+  opacity: 0.96;
+}
+
+.hero-photo-smile img {
+  object-position: 50% 48%;
+}
+
+.hero-photo-card.is-right {
+  z-index: 1;
+  --card-width: min(48%, 16rem);
+  --card-ratio: 0.78;
+  --card-x: 43%;
+  --card-y: -18%;
+  --card-rotate: 12deg;
+  --card-scale: 0.92;
+  opacity: 0.9;
+}
+
+.hero-photo-class img {
+  object-position: 48% 50%;
+}
+
+.hero-stats {
+  position: relative;
+  z-index: 4;
+  display: grid;
+  background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.9);
   border-radius: var(--radius);
   box-shadow: var(--card-shadow);
   overflow: hidden;
+  backdrop-filter: blur(0.7rem);
+}
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 1.05rem;
+  left: 50%;
+  z-index: 5;
+  display: grid;
+  width: 2.85rem;
+  height: 2.85rem;
+  place-items: center;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  box-shadow: 0 1rem 2.4rem rgba(8, 8, 8, 0.16);
+  transform: translateX(-50%);
+  animation: scrollCueBounce 1.7s ease-in-out infinite;
+  backdrop-filter: blur(0.55rem);
+}
+
+.hero-scroll-cue svg {
+  width: 1.35rem;
+  height: 1.35rem;
+  stroke-width: 2.6;
 }
 
 .panel-line {
@@ -479,20 +610,7 @@ section h2 {
   position: relative;
 }
 
-.audience .container::before {
-  position: absolute;
-  top: -1.4rem;
-  right: clamp(0rem, 4vw, 3rem);
-  width: clamp(5rem, 10vw, 8rem);
-  height: clamp(5rem, 10vw, 8rem);
-  content: "";
-  background: rgba(239, 52, 124, 0.12);
-  border-radius: 50%;
-  filter: blur(0.2px);
-}
-
-.hook::before,
-.difference::before {
+.hook::before {
   position: absolute;
   left: clamp(1.2rem, 6vw, 7rem);
   top: 50%;
@@ -701,7 +819,8 @@ section h2 {
 }
 
 .teacher-grid {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
 }
 
 .teacher-card {
@@ -711,7 +830,8 @@ section h2 {
 .teacher-photo {
   position: relative;
   display: grid;
-  min-height: 14.5rem;
+  aspect-ratio: 1;
+  min-height: clamp(8.5rem, 43vw, 14.5rem);
   place-items: end start;
   padding: 0.8rem;
   overflow: hidden;
@@ -814,18 +934,27 @@ section h2 {
 }
 
 .teacher-card > div:last-child {
-  padding: 0.2rem 1rem 1.05rem;
+  padding: 0.1rem 0.7rem 0.85rem;
 }
 
 .teacher-card h3 {
   margin-top: 0;
+  font-size: clamp(0.82rem, 3.5vw, 1.05rem);
+  line-height: 1.12;
 }
 
 .teacher-card a {
   display: inline-block;
   margin-bottom: 0.65rem;
   color: var(--pink);
+  font-size: 0.78rem;
   font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.teacher-card p {
+  font-size: 0.78rem;
+  line-height: 1.35;
 }
 
 .difference {
@@ -1170,6 +1299,28 @@ section h2 {
   }
 }
 
+@keyframes heroPhotoBreath {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.035);
+  }
+}
+
+@keyframes scrollCueBounce {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+
+  50% {
+    transform: translate(-50%, 0.42rem);
+  }
+}
+
 @media (min-width: 640px) {
   .container {
     width: min(100% - 3rem, var(--container));
@@ -1182,6 +1333,20 @@ section h2 {
 
   .teacher-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .teacher-card > div:last-child {
+    padding: 0.2rem 1rem 1.05rem;
+  }
+
+  .teacher-card h3 {
+    font-size: clamp(1rem, 1.55vw, 1.28rem);
+  }
+
+  .teacher-card a,
+  .teacher-card p {
+    font-size: inherit;
   }
 
   .program-row {
@@ -1209,9 +1374,42 @@ section h2 {
 }
 
 @media (max-width: 767px) {
+  .site-header {
+    position: fixed;
+    right: 0;
+    left: 0;
+    justify-content: flex-end;
+    background: transparent;
+    border-bottom-color: transparent;
+    box-shadow: none;
+  }
+
+  .site-header:not(.is-scrolled):not(.is-menu-open) .brand {
+    display: none;
+  }
+
+  .site-header.is-scrolled,
+  .site-header.is-menu-open {
+    justify-content: space-between;
+    background: var(--paper);
+    border-bottom-color: var(--line);
+    box-shadow: 0 0.7rem 1.8rem rgba(8, 8, 8, 0.08);
+  }
+
+  .site-header.is-scrolled .nav-toggle,
+  .site-header.is-menu-open .nav-toggle {
+    background: var(--paper);
+    border-color: var(--line-strong);
+  }
+
+  .site-header.is-scrolled .brand,
+  .site-header.is-menu-open .brand {
+    display: inline-flex;
+  }
+
   .hero {
     min-height: auto;
-    padding-block: 2.8rem 3.6rem;
+    padding-block: 2.8rem 4.7rem;
   }
 
   .hero-grid {
@@ -1360,6 +1558,16 @@ section h2 {
     border-radius: 1.25rem;
   }
 
+  .hero-photo-stack {
+    display: none;
+  }
+
+  .hero-scroll-cue {
+    bottom: 0.9rem;
+    width: 2.65rem;
+    height: 2.65rem;
+  }
+
   .panel-line {
     padding: 0.78rem 0.95rem;
   }
@@ -1372,10 +1580,6 @@ section h2 {
     font-size: 0.9rem;
   }
 
-  .difference::before {
-    display: none;
-  }
-
   .hook::before {
     display: block;
     top: 1.35rem;
@@ -1385,10 +1589,6 @@ section h2 {
     height: 4.4rem;
     opacity: 0.52;
     transform: rotate(12deg);
-  }
-
-  .audience .container::before {
-    display: none;
   }
 
   .teacher-photo-artamonov img {
@@ -1442,11 +1642,10 @@ section h2 {
 
 @media (min-width: 1024px) {
   .hero-grid {
-    grid-template-areas:
-      "copy"
-      "panel";
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "copy panel";
+    grid-template-columns: minmax(0, 0.92fr) minmax(23rem, 0.58fr);
     align-items: center;
+    gap: clamp(2rem, 5vw, 5.5rem);
   }
 
   .hero h1 {
@@ -1454,7 +1653,18 @@ section h2 {
   }
 
   .hero-panel {
-    width: min(100%, 42rem);
+    width: min(100%, 36rem);
+    justify-self: end;
+  }
+
+  .hero-photo-stack {
+    min-height: clamp(27rem, 40vw, 38rem);
+  }
+
+  .hero-stats {
+    width: min(92%, 28rem);
+    justify-self: end;
+    margin-top: -3.2rem;
   }
 
   .teacher-grid {
