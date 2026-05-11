@@ -229,6 +229,7 @@ a {
   letter-spacing: -0.06em;
   line-height: 1;
   box-shadow: 0 0.75rem 1.6rem rgba(8, 8, 8, 0.08);
+  animation: dateFloat 4.8s ease-in-out infinite;
 }
 
 .hero h1,
@@ -309,6 +310,12 @@ section h2 {
 .button svg {
   width: 1.1rem;
   height: 1.1rem;
+  transition: transform 180ms ease;
+}
+
+.button:hover svg,
+.floating-cta:hover svg {
+  transform: translateX(0.14rem) rotate(-8deg);
 }
 
 .button-primary {
@@ -459,6 +466,7 @@ section h2 {
     linear-gradient(90deg, rgba(239, 52, 124, 0.16), rgba(255, 210, 229, 0.7), rgba(239, 52, 124, 0.12));
   clip-path: polygon(0 36%, 9% 56%, 20% 42%, 32% 58%, 45% 39%, 58% 55%, 72% 41%, 86% 57%, 100% 38%, 100% 100%, 0 100%);
   pointer-events: none;
+  animation: paperWave 7s ease-in-out infinite;
 }
 
 .audience .container {
@@ -514,6 +522,21 @@ section h2 {
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.96);
   box-shadow: var(--card-shadow);
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.audience-card:hover,
+.teacher-card:hover,
+.price-card:hover,
+.contact-panel:hover,
+.program-table:hover,
+.venue-visual:hover {
+  border-color: rgba(239, 52, 124, 0.28);
+  box-shadow: 0 1.15rem 2.8rem rgba(8, 8, 8, 0.09);
+  transform: translateY(-0.18rem);
 }
 
 .audience-card {
@@ -837,6 +860,28 @@ section h2 {
   }
 }
 
+@keyframes dateFloat {
+  0%,
+  100% {
+    transform: rotate(-1deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(1deg) translateY(-0.1rem);
+  }
+}
+
+@keyframes paperWave {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(0.55rem);
+  }
+}
+
 .price-grid {
   align-items: stretch;
 }
@@ -1009,21 +1054,58 @@ section h2 {
   font-size: 0.8rem;
   font-weight: 900;
   letter-spacing: -0.04em;
+  animation: ctaFloat 3.6s ease-in-out infinite;
 }
 
 .floating-cta svg {
   width: 1.1rem;
   height: 1.1rem;
+  transition: transform 180ms ease;
 }
 
 .reveal {
-  opacity: 1;
-  transform: none;
+  opacity: 0;
+  filter: blur(0.18rem);
+  transform: translateY(1rem) scale(0.985);
+  transition:
+    opacity 580ms ease,
+    filter 580ms ease,
+    transform 580ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .reveal.is-visible {
   opacity: 1;
+  filter: blur(0);
   transform: translateY(0);
+}
+
+.audience-grid .reveal:nth-child(2),
+.teacher-grid .reveal:nth-child(2),
+.price-grid .reveal:nth-child(2),
+.difference-list .reveal:nth-child(2) {
+  transition-delay: 80ms;
+}
+
+.audience-grid .reveal:nth-child(3),
+.teacher-grid .reveal:nth-child(3),
+.price-grid .reveal:nth-child(3),
+.difference-list .reveal:nth-child(3) {
+  transition-delay: 150ms;
+}
+
+.teacher-grid .reveal:nth-child(4) {
+  transition-delay: 220ms;
+}
+
+@keyframes ctaFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-0.16rem);
+  }
 }
 
 @media (min-width: 640px) {
@@ -1248,12 +1330,14 @@ section h2 {
   *,
   *::before,
   *::after {
+    animation: none !important;
     scroll-behavior: auto !important;
     transition: none !important;
   }
 
   .reveal {
     opacity: 1;
+    filter: none;
     transform: none;
   }
 }
