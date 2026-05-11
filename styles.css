@@ -1036,6 +1036,10 @@ section h2 {
   object-position: 38% 50%;
 }
 
+.teacher-photo-nishchimenko img {
+  object-position: 55% 38%;
+}
+
 .photo-01 {
   --photo: linear-gradient(135deg, #ffd9e7, #ef347c);
 }
