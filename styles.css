@@ -683,6 +683,31 @@ section h2 {
   letter-spacing: 0.1em;
 }
 
+.teacher-photo-real {
+  background: var(--wash);
+  place-items: end start;
+}
+
+.teacher-photo-real::before {
+  display: none;
+}
+
+.teacher-photo-real img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 54%;
+}
+
+.teacher-photo-real::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, transparent 54%, rgba(8, 8, 8, 0.18));
+}
+
 .photo-01 {
   --photo: linear-gradient(135deg, #ffd9e7, #ef347c);
 }
