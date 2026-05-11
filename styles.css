@@ -1250,6 +1250,10 @@ section h2 {
   .audience .container::before {
     display: none;
   }
+
+  .teacher-photo-artamonov img {
+    object-position: 55% 30%;
+  }
 }
 
 @media (min-width: 768px) {
