@@ -1376,7 +1376,7 @@ section h2 {
 @media (max-width: 767px) {
   .site-header {
     position: fixed;
-    top: 0;
+    top: 0 !important;
     right: 0;
     left: 0;
     width: 100%;
@@ -1385,6 +1385,7 @@ section h2 {
     background: transparent;
     border-bottom-color: transparent;
     box-shadow: none;
+    transform: translate3d(0, 0, 0);
   }
 
   .site-header:not(.is-scrolled):not(.is-menu-open) .brand {
@@ -1397,6 +1398,7 @@ section h2 {
     background: var(--paper);
     border-bottom-color: var(--line);
     box-shadow: 0 0.7rem 1.8rem rgba(8, 8, 8, 0.08);
+    transform: translate3d(0, calc(-1 * max(env(safe-area-inset-top, 0px), var(--viewport-top-offset, 0px))), 0);
   }
 
   .site-header.is-scrolled .nav-toggle,

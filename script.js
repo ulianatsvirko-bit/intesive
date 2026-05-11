@@ -11,6 +11,11 @@ const syncHeaderState = () => {
   siteHeader.classList.toggle("is-scrolled", scrollTop > 8);
 };
 
+const syncViewportOffset = () => {
+  const viewportTop = window.visualViewport?.offsetTop || 0;
+  document.documentElement.style.setProperty("--viewport-top-offset", `${viewportTop}px`);
+};
+
 if (navToggle && mainNav) {
   navToggle.addEventListener("click", () => {
     const isOpen = mainNav.classList.toggle("is-open");
@@ -27,11 +32,17 @@ if (navToggle && mainNav) {
   });
 }
 
+syncViewportOffset();
 syncHeaderState();
 window.addEventListener("scroll", syncHeaderState, { passive: true });
 document.addEventListener("scroll", syncHeaderState, { passive: true });
 window.addEventListener("touchmove", syncHeaderState, { passive: true });
-window.addEventListener("resize", syncHeaderState, { passive: true });
+window.addEventListener("resize", () => {
+  syncViewportOffset();
+  syncHeaderState();
+}, { passive: true });
+window.visualViewport?.addEventListener("resize", syncViewportOffset, { passive: true });
+window.visualViewport?.addEventListener("scroll", syncViewportOffset, { passive: true });
 
 const revealItems = document.querySelectorAll(".reveal");
 
