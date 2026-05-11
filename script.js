@@ -45,6 +45,37 @@ window.visualViewport?.addEventListener("resize", syncViewportOffset, { passive:
 window.visualViewport?.addEventListener("scroll", syncViewportOffset, { passive: true });
 
 const revealItems = document.querySelectorAll(".reveal");
+const scheduleCards = Array.from(document.querySelectorAll(".schedule-card"));
+const mobileScheduleQuery = window.matchMedia("(max-width: 767px)");
+
+const syncScheduleAccordions = () => {
+  scheduleCards.forEach((card) => {
+    const days = Array.from(card.querySelectorAll(".schedule-day"));
+
+    days.forEach((day, index) => {
+      day.open = !mobileScheduleQuery.matches || index === 0;
+    });
+  });
+};
+
+scheduleCards.forEach((card) => {
+  card.addEventListener("toggle", (event) => {
+    const activeDay = event.target;
+
+    if (!mobileScheduleQuery.matches || !activeDay.matches(".schedule-day") || !activeDay.open) {
+      return;
+    }
+
+    card.querySelectorAll(".schedule-day").forEach((day) => {
+      if (day !== activeDay) {
+        day.open = false;
+      }
+    });
+  }, true);
+});
+
+syncScheduleAccordions();
+mobileScheduleQuery.addEventListener?.("change", syncScheduleAccordions);
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(

@@ -889,6 +889,20 @@ section h2 {
   border-bottom: 1px solid var(--line);
 }
 
+.schedule-day summary {
+  display: block;
+  list-style: none;
+  cursor: pointer;
+}
+
+.schedule-day summary::-webkit-details-marker {
+  display: none;
+}
+
+.schedule-day summary span {
+  display: none;
+}
+
 .schedule-day:last-child {
   border-bottom: 0;
 }
@@ -1625,15 +1639,73 @@ section h2 {
     gap: 0.35rem;
   }
 
+  .schedule-list {
+    gap: 0.6rem;
+    padding: 0.75rem;
+  }
+
   .schedule-day {
-    grid-template-columns: 2.65rem minmax(0, 1fr);
-    gap: 0.65rem;
-    padding: 0.8rem;
+    display: block;
+    padding: 0;
+    overflow: hidden;
+    background: var(--paper);
+    border: 1px solid rgba(8, 8, 8, 0.1);
+    border-radius: 1rem;
+    box-shadow: 0 0.8rem 1.6rem rgba(8, 8, 8, 0.04);
+  }
+
+  .schedule-day summary {
+    display: flex;
+    min-height: 3.25rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.55rem 0.62rem;
+  }
+
+  .schedule-day summary span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--muted);
+    font-size: 0;
+    font-weight: 900;
+  }
+
+  .schedule-day summary span::before {
+    content: "Открыть";
+    font-size: 0.72rem;
+  }
+
+  .schedule-day[open] summary span {
+    color: var(--pink);
+  }
+
+  .schedule-day[open] summary span::before {
+    content: "Свернуть";
+  }
+
+  .schedule-day summary span::after {
+    width: 0.45rem;
+    height: 0.45rem;
+    content: "";
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg) translateY(-0.08rem);
+    transition: transform 180ms ease;
+  }
+
+  .schedule-day[open] summary span::after {
+    transform: rotate(225deg) translateY(-0.02rem);
   }
 
   .schedule-day h4 {
     width: 2.15rem;
     height: 2.15rem;
+  }
+
+  .schedule-slots {
+    padding: 0 0.75rem 0.75rem;
   }
 
   .schedule-slots p {
