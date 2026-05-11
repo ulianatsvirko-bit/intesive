@@ -916,16 +916,16 @@ section h2 {
   color: var(--ink);
 }
 
-.price-card .button-light {
-  color: var(--paper);
-  background: var(--ink);
+.price-card:not(.featured) .button-light {
+  color: var(--ink);
+  background: var(--paper);
   border-color: var(--ink);
 }
 
-.price-card .button-light:hover {
+.price-card:not(.featured) .button-light:hover {
   color: var(--paper);
-  background: var(--pink);
-  border-color: var(--pink);
+  background: var(--ink);
+  border-color: var(--ink);
 }
 
 .price-card.featured {
