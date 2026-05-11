@@ -916,11 +916,35 @@ section h2 {
   color: var(--ink);
 }
 
+.price-card .button-light {
+  color: var(--paper);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.price-card .button-light:hover {
+  color: var(--paper);
+  background: var(--pink);
+  border-color: var(--pink);
+}
+
 .price-card.featured {
   background: var(--pink);
   border-color: rgba(255, 255, 255, 0.7);
   color: var(--paper);
   box-shadow: 0 1.8rem 4rem rgba(8, 8, 8, 0.16);
+}
+
+.price-card.featured .button-light {
+  color: var(--paper);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.72);
+}
+
+.price-card.featured .button-light:hover {
+  color: var(--ink);
+  background: var(--paper);
+  border-color: var(--paper);
 }
 
 .badge {
