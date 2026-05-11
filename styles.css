@@ -288,37 +288,6 @@ section h2 {
   font-weight: 700;
 }
 
-.hero-visual {
-  position: relative;
-  grid-area: visual;
-  width: min(100%, 35rem);
-  margin: 0;
-  justify-self: center;
-  filter: drop-shadow(0 1.8rem 2.4rem rgba(8, 8, 8, 0.16));
-  transform: rotate(2.5deg);
-}
-
-.hero-visual::before {
-  position: absolute;
-  left: -1.65rem;
-  bottom: -1.25rem;
-  z-index: -1;
-  width: clamp(5rem, 13vw, 8.5rem);
-  height: clamp(5rem, 13vw, 8.5rem);
-  content: "";
-  background: rgba(255, 210, 229, 0.9);
-  border-radius: 50%;
-}
-
-.hero-visual img {
-  width: 100%;
-  aspect-ratio: 1.52 / 1;
-  object-fit: cover;
-  object-position: 50% 52%;
-  border-radius: 2.2rem;
-  transform: skewX(-1.5deg);
-}
-
 .hero-actions,
 .cta-buttons {
   display: flex;
@@ -920,7 +889,8 @@ section h2 {
   height: 100%;
   min-height: 20rem;
   object-fit: cover;
-  filter: saturate(0.65) contrast(0.98);
+  object-position: 50% 52%;
+  filter: saturate(0.75) contrast(1.02);
   border-radius: calc(var(--radius) - 0.35rem);
   padding: 0.55rem;
 }
@@ -1074,22 +1044,11 @@ section h2 {
     min-height: auto;
     grid-template-areas:
       "copy"
-      "visual"
       "panel";
   }
 
   .hero-copy {
     max-width: 100%;
-  }
-
-  .hero-visual {
-    width: min(100%, 28rem);
-    margin-top: 0.45rem;
-    transform: rotate(1.4deg);
-  }
-
-  .hero-visual img {
-    border-radius: 1.25rem;
   }
 
   .hero h1 {
@@ -1155,7 +1114,6 @@ section h2 {
   .hero-grid {
     grid-template-areas:
       "copy"
-      "visual"
       "panel";
     grid-template-columns: 1fr;
   }
@@ -1179,19 +1137,14 @@ section h2 {
 @media (min-width: 1024px) {
   .hero-grid {
     grid-template-areas:
-      "copy visual"
-      "panel visual";
-    grid-template-columns: minmax(0, 0.95fr) minmax(22rem, 0.7fr);
+      "copy"
+      "panel";
+    grid-template-columns: minmax(0, 1fr);
     align-items: center;
-    column-gap: clamp(1.8rem, 4vw, 4rem);
   }
 
   .hero h1 {
     font-size: clamp(3.45rem, 4.9vw, 5.6rem);
-  }
-
-  .hero-visual {
-    justify-self: end;
   }
 
   .hero-panel {
