@@ -1246,6 +1246,10 @@ section h2 {
     opacity: 0.52;
     transform: rotate(12deg);
   }
+
+  .audience .container::before {
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
