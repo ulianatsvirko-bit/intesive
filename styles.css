@@ -716,6 +716,10 @@ section h2 {
   object-position: 55% 38%;
 }
 
+.teacher-photo-zhikhareva img {
+  object-position: 38% 50%;
+}
+
 .photo-01 {
   --photo: linear-gradient(135deg, #ffd9e7, #ef347c);
 }
