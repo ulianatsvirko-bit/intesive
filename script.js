@@ -47,8 +47,17 @@ window.visualViewport?.addEventListener("scroll", syncViewportOffset, { passive:
 const revealItems = document.querySelectorAll(".reveal");
 const scheduleSwitchButtons = Array.from(document.querySelectorAll("[data-schedule-target]"));
 const schedulePanels = Array.from(document.querySelectorAll("[data-schedule-panel]"));
+const desktopScheduleQuery = window.matchMedia("(min-width: 1024px)");
 
 const setActiveSchedule = (target) => {
+  if (desktopScheduleQuery.matches) {
+    schedulePanels.forEach((panel) => {
+      panel.hidden = false;
+      panel.classList.add("is-active");
+    });
+    return;
+  }
+
   scheduleSwitchButtons.forEach((button) => {
     const isActive = button.dataset.scheduleTarget === target;
     button.classList.toggle("is-active", isActive);
@@ -70,6 +79,10 @@ scheduleSwitchButtons.forEach((button) => {
 if (scheduleSwitchButtons.length && schedulePanels.length) {
   setActiveSchedule(scheduleSwitchButtons.find((button) => button.classList.contains("is-active"))?.dataset.scheduleTarget || scheduleSwitchButtons[0].dataset.scheduleTarget);
 }
+
+desktopScheduleQuery.addEventListener?.("change", () => {
+  setActiveSchedule(scheduleSwitchButtons.find((button) => button.classList.contains("is-active"))?.dataset.scheduleTarget || scheduleSwitchButtons[0]?.dataset.scheduleTarget);
+});
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(

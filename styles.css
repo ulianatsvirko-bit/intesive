@@ -1906,6 +1906,15 @@ section h2 {
 
   .schedule-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: none;
+  }
+
+  .schedule-switch {
+    display: none;
+  }
+
+  .schedule-card[hidden] {
+    display: block;
   }
 
   .teacher-grid {
