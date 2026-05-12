@@ -45,37 +45,31 @@ window.visualViewport?.addEventListener("resize", syncViewportOffset, { passive:
 window.visualViewport?.addEventListener("scroll", syncViewportOffset, { passive: true });
 
 const revealItems = document.querySelectorAll(".reveal");
-const scheduleCards = Array.from(document.querySelectorAll(".schedule-card"));
-const mobileScheduleQuery = window.matchMedia("(max-width: 767px)");
+const scheduleSwitchButtons = Array.from(document.querySelectorAll("[data-schedule-target]"));
+const schedulePanels = Array.from(document.querySelectorAll("[data-schedule-panel]"));
 
-const syncScheduleAccordions = () => {
-  scheduleCards.forEach((card) => {
-    const days = Array.from(card.querySelectorAll(".schedule-day"));
+const setActiveSchedule = (target) => {
+  scheduleSwitchButtons.forEach((button) => {
+    const isActive = button.dataset.scheduleTarget === target;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  });
 
-    days.forEach((day, index) => {
-      day.open = !mobileScheduleQuery.matches || index === 0;
-    });
+  schedulePanels.forEach((panel) => {
+    panel.hidden = panel.dataset.schedulePanel !== target;
+    panel.classList.toggle("is-active", panel.dataset.schedulePanel === target);
   });
 };
 
-scheduleCards.forEach((card) => {
-  card.addEventListener("toggle", (event) => {
-    const activeDay = event.target;
-
-    if (!mobileScheduleQuery.matches || !activeDay.matches(".schedule-day") || !activeDay.open) {
-      return;
-    }
-
-    card.querySelectorAll(".schedule-day").forEach((day) => {
-      if (day !== activeDay) {
-        day.open = false;
-      }
-    });
-  }, true);
+scheduleSwitchButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    setActiveSchedule(button.dataset.scheduleTarget);
+  });
 });
 
-syncScheduleAccordions();
-mobileScheduleQuery.addEventListener?.("change", syncScheduleAccordions);
+if (scheduleSwitchButtons.length && schedulePanels.length) {
+  setActiveSchedule(scheduleSwitchButtons.find((button) => button.classList.contains("is-active"))?.dataset.scheduleTarget || scheduleSwitchButtons[0].dataset.scheduleTarget);
+}
 
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver(

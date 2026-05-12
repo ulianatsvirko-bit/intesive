@@ -840,6 +840,50 @@ section h2 {
 .schedule-grid {
   display: grid;
   gap: 1rem;
+  max-width: 56rem;
+  margin-inline: auto;
+}
+
+.schedule-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.35rem;
+  width: min(100%, 24rem);
+  margin: 0 0 1rem;
+  padding: 0.35rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  box-shadow: var(--card-shadow);
+}
+
+.schedule-switch button {
+  min-height: 2.5rem;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  font-family: "Unbounded", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  cursor: pointer;
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.schedule-switch button:hover {
+  color: var(--ink);
+  transform: translateY(-0.05rem);
+}
+
+.schedule-switch button.is-active {
+  color: var(--paper);
+  background: var(--pink);
+  box-shadow: 0 0.85rem 1.6rem rgba(239, 52, 124, 0.24);
 }
 
 .schedule-card {
@@ -849,6 +893,10 @@ section h2 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--card-shadow);
+}
+
+.schedule-card[hidden] {
+  display: none;
 }
 
 .schedule-card-head {
@@ -887,20 +935,6 @@ section h2 {
   gap: 0.85rem;
   padding: 0.9rem 1rem;
   border-bottom: 1px solid var(--line);
-}
-
-.schedule-day summary {
-  display: block;
-  list-style: none;
-  cursor: pointer;
-}
-
-.schedule-day summary::-webkit-details-marker {
-  display: none;
-}
-
-.schedule-day summary span {
-  display: none;
 }
 
 .schedule-day:last-child {
@@ -1645,7 +1679,9 @@ section h2 {
   }
 
   .schedule-day {
-    display: block;
+    display: grid;
+    grid-template-columns: 2.35rem minmax(0, 1fr);
+    gap: 0.65rem;
     padding: 0;
     overflow: hidden;
     background: var(--paper);
@@ -1654,58 +1690,14 @@ section h2 {
     box-shadow: 0 0.8rem 1.6rem rgba(8, 8, 8, 0.04);
   }
 
-  .schedule-day summary {
-    display: flex;
-    min-height: 3.25rem;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.8rem;
-    padding: 0.55rem 0.62rem;
-  }
-
-  .schedule-day summary span {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    color: var(--muted);
-    font-size: 0;
-    font-weight: 900;
-  }
-
-  .schedule-day summary span::before {
-    content: "Открыть";
-    font-size: 0.72rem;
-  }
-
-  .schedule-day[open] summary span {
-    color: var(--pink);
-  }
-
-  .schedule-day[open] summary span::before {
-    content: "Свернуть";
-  }
-
-  .schedule-day summary span::after {
-    width: 0.45rem;
-    height: 0.45rem;
-    content: "";
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
-    transform: rotate(45deg) translateY(-0.08rem);
-    transition: transform 180ms ease;
-  }
-
-  .schedule-day[open] summary span::after {
-    transform: rotate(225deg) translateY(-0.02rem);
-  }
-
   .schedule-day h4 {
     width: 2.15rem;
     height: 2.15rem;
+    margin: 0.65rem 0 0.65rem 0.65rem;
   }
 
   .schedule-slots {
-    padding: 0 0.75rem 0.75rem;
+    padding: 0.65rem 0.75rem 0.65rem 0;
   }
 
   .schedule-slots p {

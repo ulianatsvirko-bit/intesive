@@ -190,92 +190,96 @@
             <p class="section-kicker">Расписание</p>
             <h2 id="schedule-title">Две возрастные группы, два класса каждый день.</h2>
           </div>
+          <div class="schedule-switch reveal" role="tablist" aria-label="Выбор возрастной группы">
+            <button class="is-active" type="button" role="tab" aria-selected="true" data-schedule-target="under-12">До 12 лет</button>
+            <button type="button" role="tab" aria-selected="false" data-schedule-target="over-12">12+ лет</button>
+          </div>
           <div class="schedule-grid">
-            <article class="schedule-card reveal">
+            <article class="schedule-card reveal is-active" data-schedule-panel="under-12">
               <div class="schedule-card-head">
                 <span>Группа</span>
                 <h3>До 12 лет</h3>
               </div>
               <div class="schedule-list">
-                <details class="schedule-day" open>
-                  <summary><h4>Пн</h4><span>Открыть</span></summary>
+                <div class="schedule-day">
+                  <h4>Пн</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Джаз</strong><span>Инга Жихарева</span></p>
                     <p><time>12.30–14.00</time><strong>Классика</strong><span>Игорь Артамонов</span></p>
                   </div>
-                </details>
-                <details class="schedule-day" open>
-                  <summary><h4>Вт</h4><span>Открыть</span></summary>
+                </div>
+                <div class="schedule-day">
+                  <h4>Вт</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Contemporary, импровизация</strong><span>Александра Буяльская</span></p>
                     <p><time>12.30–14.00</time><strong>Классика</strong><span>Татьяна Шеметовец</span></p>
                   </div>
-                </details>
-                <details class="schedule-day" open>
-                  <summary><h4>Ср</h4><span>Открыть</span></summary>
+                </div>
+                <div class="schedule-day">
+                  <h4>Ср</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Гимнастика</strong><span>Анна Нищименко</span></p>
                     <p><time>12.30–14.00</time><strong>Contemporary, техника</strong><span>Александра Буяльская</span></p>
                   </div>
-                </details>
-                <details class="schedule-day" open>
-                  <summary><h4>Чт</h4><span>Открыть</span></summary>
+                </div>
+                <div class="schedule-day">
+                  <h4>Чт</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Contemporary, хореография</strong><span>Александра Буяльская</span></p>
                     <p><time>12.30–14.00</time><strong>Классика</strong><span>Татьяна Шеметовец</span></p>
                   </div>
-                </details>
-                <details class="schedule-day" open>
-                  <summary><h4>Пт</h4><span>Открыть</span></summary>
+                </div>
+                <div class="schedule-day">
+                  <h4>Пт</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Джаз</strong><span>Инга Жихарева</span></p>
                     <p><time>12.30–14.00</time><strong>Классика</strong><span>Игорь Артамонов</span></p>
                   </div>
-                </details>
+                </div>
               </div>
             </article>
 
-            <article class="schedule-card reveal">
+            <article class="schedule-card reveal" data-schedule-panel="over-12" hidden>
               <div class="schedule-card-head">
                 <span>Группа</span>
                 <h3>12+ лет</h3>
               </div>
               <div class="schedule-list">
-                <details class="schedule-day" open>
-                  <summary><h4>Пн</h4><span>Открыть</span></summary>
+                <div class="schedule-day">
+                  <h4>Пн</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Классика</strong><span>Игорь Артамонов</span></p>
                     <p><time>12.30–14.00</time><strong>Contemporary, техника</strong><span>Александра Буяльская</span></p>
                   </div>
-                </details>
-                <details class="schedule-day" open>
-                  <summary><h4>Вт</h4><span>Открыть</span></summary>
+                </div>
+                <div class="schedule-day">
+                  <h4>Вт</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Классика</strong><span>Татьяна Шеметовец</span></p>
                     <p><time>12.30–14.00</time><strong>Contemporary, импровизация</strong><span>Александра Буяльская</span></p>
                   </div>
-                </details>
-                <details class="schedule-day" open>
-                  <summary><h4>Ср</h4><span>Открыть</span></summary>
+                </div>
+                <div class="schedule-day">
+                  <h4>Ср</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Джаз</strong><span>Инга Жихарева</span></p>
                     <p><time>12.30–14.00</time><strong>Гимнастика</strong><span>Анна Нищименко</span></p>
                   </div>
-                </details>
-                <details class="schedule-day" open>
-                  <summary><h4>Чт</h4><span>Открыть</span></summary>
+                </div>
+                <div class="schedule-day">
+                  <h4>Чт</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Классика</strong><span>Татьяна Шеметовец</span></p>
                     <p><time>12.30–14.00</time><strong>Contemporary, хореография</strong><span>Александра Буяльская</span></p>
                   </div>
-                </details>
-                <details class="schedule-day" open>
-                  <summary><h4>Пт</h4><span>Открыть</span></summary>
+                </div>
+                <div class="schedule-day">
+                  <h4>Пт</h4>
                   <div class="schedule-slots">
                     <p><time>11.00–12.30</time><strong>Классика</strong><span>Игорь Артамонов</span></p>
                     <p><time>12.30–14.00</time><strong>Хореография</strong><span>Александра Буяльская</span></p>
                   </div>
-                </details>
+                </div>
               </div>
             </article>
           </div>
