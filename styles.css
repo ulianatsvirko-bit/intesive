@@ -828,13 +828,57 @@ section h2 {
   color: var(--pink);
 }
 
+.schedule-toggle-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.15rem;
+}
+
+.button-schedule {
+  color: var(--ink);
+  background: var(--paper);
+  border-color: var(--paper);
+  box-shadow: 0 1.1rem 2.5rem rgba(8, 8, 8, 0.14);
+}
+
+.button-schedule:hover,
+.button-schedule.is-open {
+  color: var(--paper);
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.button-schedule svg {
+  transition: transform 220ms ease;
+}
+
+.button-schedule.is-open svg {
+  transform: rotate(180deg);
+}
+
 .schedule {
+  max-height: 220rem;
+  padding-block: clamp(3.2rem, 6vw, 5.8rem);
+  overflow: hidden;
   background:
     linear-gradient(rgba(239, 52, 124, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(239, 52, 124, 0.045) 1px, transparent 1px),
     linear-gradient(180deg, #fff 0%, #fff8fb 100%);
   background-size: 2.2rem 2.2rem, 2.2rem 2.2rem, auto;
   border-bottom: 1px solid var(--line);
+  opacity: 1;
+  transition:
+    max-height 520ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 260ms ease,
+    padding 420ms ease;
+}
+
+.schedule.is-collapsed {
+  max-height: 0;
+  padding-block: 0;
+  border-bottom-color: transparent;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .schedule-grid {

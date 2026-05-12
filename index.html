@@ -181,11 +181,23 @@
               </strong>
             </div>
           </div>
+          <div class="schedule-toggle-wrap reveal">
+            <button
+              class="button button-schedule"
+              type="button"
+              aria-expanded="false"
+              aria-controls="schedule-content"
+              data-schedule-toggle
+            >
+              <span>Расписание</span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+          </div>
         </div>
       </section>
 
-      <section class="schedule section-paper" id="schedule" aria-labelledby="schedule-title">
-        <div class="container">
+      <section class="schedule section-paper is-collapsed" id="schedule" aria-labelledby="schedule-title">
+        <div class="container" id="schedule-content">
           <div class="section-heading reveal">
             <p class="section-kicker">Расписание</p>
             <h2 id="schedule-title">Две возрастные группы, два класса каждый день.</h2>

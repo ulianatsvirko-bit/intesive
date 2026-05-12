@@ -45,9 +45,40 @@ window.visualViewport?.addEventListener("resize", syncViewportOffset, { passive:
 window.visualViewport?.addEventListener("scroll", syncViewportOffset, { passive: true });
 
 const revealItems = document.querySelectorAll(".reveal");
+const scheduleSection = document.querySelector(".schedule");
+const scheduleToggle = document.querySelector("[data-schedule-toggle]");
 const scheduleSwitchButtons = Array.from(document.querySelectorAll("[data-schedule-target]"));
 const schedulePanels = Array.from(document.querySelectorAll("[data-schedule-panel]"));
 const desktopScheduleQuery = window.matchMedia("(min-width: 1024px)");
+
+const setScheduleExpanded = (isExpanded, shouldScroll = false) => {
+  if (!scheduleSection || !scheduleToggle) {
+    return;
+  }
+
+  scheduleSection.classList.toggle("is-collapsed", !isExpanded);
+  scheduleToggle.classList.toggle("is-open", isExpanded);
+  scheduleToggle.setAttribute("aria-expanded", String(isExpanded));
+
+  if (isExpanded && shouldScroll) {
+    window.setTimeout(() => {
+      scheduleSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 80);
+  }
+};
+
+if (scheduleToggle) {
+  scheduleToggle.addEventListener("click", () => {
+    const willExpand = scheduleToggle.getAttribute("aria-expanded") !== "true";
+    setScheduleExpanded(willExpand, willExpand);
+  });
+}
+
+document.querySelectorAll('a[href="#schedule"]').forEach((link) => {
+  link.addEventListener("click", () => {
+    setScheduleExpanded(true);
+  });
+});
 
 const setActiveSchedule = (target) => {
   if (desktopScheduleQuery.matches) {
